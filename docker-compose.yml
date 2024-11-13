@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  web:
+    image: fa4stik/localpasswordmanager:latest
+    ports:
+      - "80:80"

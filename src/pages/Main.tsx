@@ -1,14 +1,22 @@
 import { CustomTable } from "../components/CustomTable.tsx";
+import { usePasswordsStore } from "../store/usePasswordsStore.ts";
 
 export const Main = () => {
+  const dataSource = usePasswordsStore(state => state.records)
+  const addRecord = usePasswordsStore(state => state.addRecord)
+  const removeRecord = usePasswordsStore(state => state.removeRecord)
+  const updateRecord = usePasswordsStore(state => state.updateRecord)
+  const importRecords = usePasswordsStore(state => state.importRecords)
 
-    return (
-        <div className="w-full h-full">
-            <CustomTable dataSource={[
-              { key: '1', service: 'g', login: '123', password: '123' },
-              { key: '2', service: 'd', login: '123', password: '123' },
-              { key: '3', service: 'f', login: '123', password: '123' },
-            ]}/>
-        </div>
-    );
+	return (
+		<div className="max-w-screen min-h-screen p-10">
+			<CustomTable
+				dataSource={dataSource}
+				onAdd={addRecord}
+				onRemove={removeRecord}
+				onUpdate={updateRecord}
+				onImport={importRecords}
+			/>
+		</div>
+	);
 };
